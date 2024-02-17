@@ -1,0 +1,28 @@
+{{ define "main" }}
+<!-- this page handles all taxonomy lists -->
+  <h1>All <span class='text-brand-{{ if eq .Section "category" }}secondary{{ else }}accent{{ end }}'>{{ .Section }}</span></h1>
+
+  <div class="flex flex-wrap gap-2 py-4">
+    {{ if eq .Section "category" }}
+      {{ range .Site.Taxonomies.category.ByCount }}
+        {{ $cnt := .Count }}
+        {{ with $.Site.GetPage (printf "/category/%s" .Name) }}
+            <a href="{{ .RelPermalink }}" title="Posts with {{ .Name }}: {{ $cnt }}" class="flex items-center gap-2 rounded-full text-brand-secondary bg-brand-base-100 py-0.5 px-2.5 text-sm">
+              <span>{{ .Name }}</span>
+              <span class="text-xs">{{ $cnt }}</span>
+            </a>
+        {{ end }}
+      {{ end }}
+    {{ else if eq .Section "tags" }}
+      {{ range .Site.Taxonomies.tags.ByCount }}
+        {{ $cnt := .Count }}
+        {{ with $.Site.GetPage (printf "/tags/%s" .Name) }}
+            <a href="{{ .RelPermalink }}" title="Posts with {{ .Name }}: {{ $cnt }}" class="flex items-center gap-2 rounded-full text-brand-base-100 bg-brand-accent py-0.5 px-2.5 text-sm">
+              <span>{{ .Name }}</span>
+              <span class="text-xs">{{ $cnt }}</span>
+            </a>
+        {{ end }}
+      {{ end }}
+    {{ end }}
+  </div>
+{{ end }}

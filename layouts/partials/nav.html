@@ -1,0 +1,31 @@
+{{/* company logo */}}
+<a href="/" class="flex gap-4 items-center">
+  {{ $logoPng := resources.Get "images/logo.png" }}
+  {{ if $logoPng }}
+    {{ $logoPng = $logoPng | fingerprint }}
+    {{ $logoPng = $logoPng.Process "webp" }}
+    {{ if $logoPng.Permalink }}
+    <img src="{{ $logoPng.Permalink }}" class="w-8 h-8 rounded-full overflow-hidden">
+    {{ end }}
+  {{ else }}
+    <div class="w-8 h-8 bg-brand-accent rounded-full"></div>
+  {{ end }}
+  <h1>{{ .Site.Title }}</h1>
+</a>
+
+{{/* desktop menu */}}
+<div class="hidden md:flex gap-6 px-8">
+  {{- range site.Menus.main }}
+    <a href="{{ .PageRef }}" class="flex items-center hover:bg-brand-base-100 text-brand-secondary font-light
+      transition-all duration-200 ease-in-out p-2 rounded-md">
+      {{ .Name }}
+    </a>
+  {{ end }}
+</div>
+
+{{/* mobile menu button */}}
+<div class="block md:hidden">
+  <button id="mobileMenuBtn" class="p-1 text-brand-secondary rounded-md" onclick="window.modalController.showMobileNav()">
+    {{- partial "icons/bars.html" (dict "class" "w-7 h-7") -}}
+  </button>
+</div>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="{{ or site.Language.LanguageCode site.Language.Lang }}"
+  dir="{{ or site.Language.LanguageDirection `ltr` }}">
+
+<head>
+  {{ partial "head.html" . }}
+  {{ partial "jsBefore.html" . }}
+</head>
+
+<body class="bg-brand-base-100 text-brand-primary">
+  <!-- page loader -->
+  <div id="loader"
+    class="z-[50] fixed flex justify-center items-center top-0 left-0 w-screen h-screen bg-brand-base-100">
+    {{ partial "icons/spinner.html" (dict "class" "h-10 w-10 text-brand-accent")}}
+  </div>
+  <div class="max-h-screen h-screen grid grid-rows-[auto_1fr] overflow-hidden">
+    <!-- navbar -->
+    <header id="navContainer" class="sm:static sticky top-0 py-4 sm:py-5 bg-brand-base-100 z-[1] max-md:drop-shadow-md">
+      <nav class="sm:max-w-4xl mx-auto flex gap-6 items-center justify-between md:justify-start px-5 sm:px-6 lg:px-0">
+        {{ partial "nav.html" . }}
+      </nav>
+    </header>
+    <main class="smooth-scroll h-full overflow-y-auto overflow-x-hidden grid grid-rows-[1fr_auto]">
+      <!-- main content -->
+      <div class="sm:max-w-4xl mx-auto h-full w-full">
+        <div class="h-full w-full bg-brand-base-200 rounded-md shadow-md">
+          <div class="p-7 sm:px-7 px-4">
+            {{ block "main" . }}{{ end }}
+          </div>
+        </div>
+      </div>
+      <!-- footer -->
+      <footer class="text-xs text-brand-secondary flex gap-1 justify-center sm:py-3 py-2">
+        {{ partial "footer.html" . }}
+      </footer>
+    </main>
+
+  </div>
+  {{ partial "jsAfter.html" . }}
+</body>
+
+</html>

@@ -1,0 +1,52 @@
+#!/bin/bash
+case "$1" in
+    prod)
+        if [ -d "public/blogs/" ];
+        then
+          rm -rf public/blogs/*
+        fi
+        if [ -d "public/js/" ];
+        then
+          rm public/js/*
+        fi
+        if [ -d "public/js/standalone" ];
+        then
+          rm public/js/standalone/*
+        fi
+        if [ -d "public/css/" ];
+        then
+          rm public/css/*
+        fi
+        if [ -d "public/images/" ];
+        then
+          rm public/images/*
+        fi
+        hugo --config hugo.toml --minify --gc
+        ~/zenstorage/venv/bin/python3 ~/zenstorage/hugo.py
+        ;;
+    create)
+        if [ -z $2 ] && [ -z $3 ];
+        then
+            echo "Need a type (blog|news), it's category, and it's filename in kebab case"
+            exit
+        fi
+
+        if [ "$2" == "blog" ];
+        then
+            if [ -z "$4" ];
+            then
+                echo "Blog type needs it's category and it's filename in kebab case"
+                exit
+            fi
+            hugo new content blogs/$3/"$4".md
+        elif [ "$2" == "news" ];
+        then
+            hugo new content news/"$3".md
+        else
+            echo "Type needs to be blog|news"
+        fi
+        ;;
+    *)
+        hugo server --buildDrafts --gc
+        ;;
+esac

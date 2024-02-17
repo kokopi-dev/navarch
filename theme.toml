@@ -1,0 +1,19 @@
+name = 'Navarch'
+license = 'MIT'
+licenselink = 'https://github.com/biyocode/navarch/LICENSE'
+description = "Software engineer's blog"
+
+# The home page of the theme, where the source can be found
+homepage = 'https://github.com/biyocode/navarch'
+
+# If you have a running demo of the theme
+demosite = 'https://biyocode.com'
+
+# Taxonomy terms
+tags = ['blog', 'programming', 'homepage']
+features = ['prismJS', 'code block styling', 'tailwindcss', 'optimized images', 'optimized videos', 'webcomponents', 'meta', 'heroicons']
+
+# If the theme has a single author
+[author]
+  name = 'Kokopi'
+  homepage = 'Biyocode'

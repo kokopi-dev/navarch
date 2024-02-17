@@ -1,0 +1,118 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+
+  body {
+    font-family: system-ui, sans-serif;
+  }
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #D8DBE1 #111010 ;
+  }
+
+  *::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background: #D8DBE1;
+    border-radius: 4px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: #111010;
+    border-radius: 4px;
+  }
+
+  *::-moz-scrollbar {
+    width: 8px;
+    border-radius: 4px;
+  }
+
+  *::-moz-scrollbar-thumb {
+    background: #D8DBE1;
+    border-radius: 4px;
+  }
+
+  *::-moz-scrollbar-track {
+    background: #111010;
+    border-radius: 4px;
+  }
+
+  *::-ms-scrollbar {
+    width: 8px;
+    border-radius: 4px;
+  }
+
+  *::-ms-scrollbar-thumb {
+    background: #D8DBE1;
+    border-radius: 4px;
+  }
+
+  *::-ms-scrollbar-track {
+    background: #111010;
+    border-radius: 4px;
+  }
+
+  select {
+    @apply bg-neutral-800 outline outline-1 outline-amber-100 rounded-md p-1;
+  }
+
+  h1 {
+    @apply sm:text-3xl text-2xl font-bold;
+  }
+  h2 {
+    @apply sm:text-xl text-lg font-semibold;
+  }
+  h3 {
+    @apply font-semibold;
+  }
+  ul {
+    @apply list-disc pl-6;
+  }
+  code {
+    @apply py-0.5 px-1 bg-brand-primary/10 rounded-md;
+  }
+  code[class*=language-],
+  pre[class*=language-] {
+    white-space: pre-wrap !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+  }
+  #singleContent a {
+    @apply text-brand-link underline hover:no-underline cursor-pointer;
+  }
+  #singleContent h1,
+  #singleContent h2,
+  #singleContent h3 {
+    @apply text-brand-accent;
+  }
+  #singleContent h1 + p,
+  #singleContent h2 + p,
+  #singleContent h3 + p {
+    @apply m-0;
+  }
+  #singleContent hr {
+    @apply bg-gradient-to-r from-brand-accent/40 to-brand-accent/40 h-[1px] border-none;
+  }
+  figcaption {
+    @apply opacity-0 transition ease-in-out duration-300 z-[1] absolute bottom-4 left-4 text-center py-1.5 px-2.5 rounded-md bg-brand-base-100 w-fit mx-auto font-light text-brand-secondary text-sm;
+  }
+  figure img {
+    @apply mx-auto bg-brand-secondary/50 shadow-md opacity-0 transition ease-in-out duration-300;
+  }
+  .figure-placeholder {
+    @apply w-full h-72 mx-auto rounded-md bg-brand-accent/50 animate-pulse;
+  }
+}

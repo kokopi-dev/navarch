@@ -1,0 +1,7 @@
+<h1>{{ .Title }}</h1>
+{{ .Content }}
+<div class="flex flex-col gap-4">
+{{ range .Pages }}
+  {{ partial "lists/post_view_expanded.html" . }}
+{{ end }}
+</div>

@@ -1,0 +1,15 @@
+{{ define "main" }}
+  <section class="flex flex-col gap-4">
+    <div class="flex gap-3 items-center">
+      <div class="text-brand-accent">
+        {{ partial "icons/document_text.html" (dict "class" "w-7 h-7") }}
+      </div>
+      <div class="flex gap-4 items-center">
+        <h1>Posts</h1>
+      </div>
+    </div>
+    {{ range site.RegularPages }}
+    {{ partial "lists/post_view_expanded.html" . }}
+    {{ end }}
+  </section>
+{{ end }}

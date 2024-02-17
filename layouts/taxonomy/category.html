@@ -1,0 +1,11 @@
+{{ define "main" }}
+<div class="flex flex-col gap-4">
+  <h1>Posts with category: <span class="text-brand-secondary">{{ .LinkTitle }}</span></h1>
+  {{ $paginator := .Paginate (where .Data.Pages "Type" "posts") }}
+<div class="flex flex-col gap-4">
+  {{ range $paginator.Pages }}
+    {{ partial "lists/post_view_expanded.html" . }}
+  {{ end }}
+</div>
+</div>
+{{ end }}

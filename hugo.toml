@@ -1,0 +1,49 @@
+baseURL = 'https://example.org/'
+languageCode = 'en-us'
+title = 'My New Hugo Site'
+
+[taxonomies]
+  category = 'category'
+  tag = 'tags'
+
+[[menus.main]]
+name = 'Home'
+pageRef = '/'
+weight = 10
+
+[[menus.main]]
+name = 'Posts'
+pageRef = '/posts'
+weight = 20
+
+[[menus.main]]
+name = 'Tags'
+pageRef = '/tags'
+weight = 30
+
+[[menus.main]]
+name = 'Categories'
+pageRef = '/category'
+weight = 40
+
+[module]
+  [module.hugoVersion]
+    extended = false
+    min = "0.116.0"
+
+[[params.social]]
+  name = "Twitter"
+  url = "https://twitter.com/@johndoe"
+  handle = "@johndoe"
+  weight = 2
+
+[[params.social]]
+  name = "Github"
+  url = "https://github.com/johndoe"
+  handle = "johndoe"
+  weight = 1
+
+[[redirects]]
+  from = "/*"
+  to = "/404/"
+  status = 404

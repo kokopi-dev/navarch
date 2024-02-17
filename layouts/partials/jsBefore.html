@@ -1,0 +1,3 @@
+{{ $options := dict "targetPath" "js/beforeBundle.js" }}
+{{ $beforeBundleJs := resources.Get "js/beforeBundle.js" | js.Build $options | resources.Minify | fingerprint }}
+<script src="{{ $beforeBundleJs.RelPermalink }}" integrity="{{ $beforeBundleJs.Data.Integrity }}" defer></script>

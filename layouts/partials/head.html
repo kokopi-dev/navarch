@@ -1,0 +1,10 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ printf "%s | %s" .Title site.Title }}{{ end }}</title>
+
+
+{{ $twcss := resources.Get "css/app.css" | fingerprint | minify }}
+<link type="text/css" rel="stylesheet" href="{{ $twcss.Permalink }}" />
+
+{{ $loaderJs := resources.Get "js/standalone/loader.js" | fingerprint | minify }}
+<script type="text/javascript" src="{{ $loaderJs.Permalink }}"></script>

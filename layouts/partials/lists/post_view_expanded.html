@@ -1,0 +1,73 @@
+<a href="{{ .Permalink }}"
+  class="shadow-md group relative flex flex-col gap-2 bg-gradient-to-r from-brand-base-100 to-brand-base-200 hover:ring-1 hover:ring-brand-accent/50 rounded-md p-6 overflow-hidden transition-all duration-200 ease-in-out">
+  {{/* tags */}}
+  <div
+    class="z-[1] opacity-0 group-hover:opacity-100 flex absolute bottom-4 right-4 gap-2 items-center transition duration-300 ease-in-out">
+    <span class="p-1 rounded-full bg-brand-accent" title="tags">
+      {{ partial "icons/tag.html" (dict "context" . "class" "w-4 h-4 text-brand-base-100") }}
+    </span>
+
+    {{ if not .Params.tags }}
+    <span class="rounded-full text-brand-base-100 bg-brand-accent py-0.5 px-1.5 text-sm">
+      No Tags
+    </span>
+    {{ else }}
+      {{ range .Params.tags | first 3 }}
+      <span class="rounded-full text-brand-base-100 bg-brand-accent py-0.5 px-1.5 text-sm">
+        {{ . }}
+      </span>
+      {{ end }}
+    {{ end }}
+
+  </div>
+  {{/* tags backdrop */}}
+  <div
+    class="opacity-0 group-hover:opacity-100 group-hover:bg-gradient-to-t group-hover:to-transparent group-hover:from-brand-base-200 absolute bottom-0 right-0 h-20 w-full transition duration-300 ease-in-out">
+  </div>
+
+  <h1 class="font-bold tracking-wide text-brand-accent">{{ .Title }}</h1>
+
+  {{/* post information row */}}
+  <div class="flex sm:flex-row flex-col gap-2 items-center">
+    <div class="flex gap-2 items-center justify-start sm:w-fit w-full">
+      {{ if .Draft }}
+      <span class="font-bold text-sm text-brand-error">[Draft]</span>
+      {{ end }}
+
+      {{/* date */}}
+      <span class="opacity-50 whitespace-nowrap">{{ .Date.Format "2006 Jan 02" }}</span>
+    </div>
+
+    <span class="sm:block hidden opacity-50">-</span>
+
+    <div class="flex gap-3 items-center sm:w-fit w-full justify-start">
+      {{/* author */}}
+      <div class="rounded-full text-brand-accent flex items-center justify-center gap-1" title="author">
+        {{ partial "icons/user.html" (dict "context" . "class" "w-4 h-4") }}
+        <span class="text-sm">
+          {{ .Params.author }}
+        </span>
+      </div>
+
+      {{/* category */}}
+      <span class="flex gap-2 items-center text-brand-secondary">
+        {{ partial "icons/folder.html" (dict "context" . "class" "w-4 h-4") }}
+        <span class="text-sm">
+          {{ if .Params.category }}
+          {{ .Params.category | title }}
+          {{ else }}
+          N/A
+          {{ end }}
+        </span>
+      </span>
+    </div>
+  </div>
+
+  <div class="postViewSummary flex">
+    {{ if ne .Summary "" }}
+    <div class="line-clamp-2 overflow-ellipsis text-brand-primary/70">{{ .Summary }}</div>
+    {{ else }}
+    <div class="text-brand-link underline">Read more...</div>
+    {{ end }}
+  </div>
+</a>

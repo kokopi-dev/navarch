@@ -1,0 +1,26 @@
+{{ $src := .Get "src" }}
+{{ $image := .Page.Resources.Get $src | fingerprint }}
+
+{{ if $image }}
+  {{ if ne (path.Ext $image) ".gif" }}
+    {{ $image = $image.Process "webp" }}
+  {{ end }}
+{{ end }}
+
+{{ $imageAlt := "image" }}
+{{ if ne (.Get "alt") "" }}
+  {{ $imageAlt = .Get "alt" }}
+{{ end }}
+
+<figure class="w-fit mx-auto relative group py-1">
+  <div class="relative rounded-md overflow-clip">
+    <img class="postImg rounded-md" src="{{ $image.RelPermalink }}" alt="{{ $imageAlt }}" />
+    <div class="absolute block top-0 left-0 bg-white/10 animate-pulse h-full w-full"></div>
+  </div>
+  {{ if (.Get "title") }}
+    <figcaption class="group-hover:opacity-100">
+      <h4>{{ with .Get "title" }}{{ . }}{{ end }}</h4>
+    </figcaption>
+    <div class="opacity-0 group-hover:opacity-100 group-hover:bg-gradient-to-t rounded-b-md group-hover:to-transparent group-hover:from-brand-base-100 absolute bottom-0 left-0 h-16 w-full transition duration-300 ease-in-out"></div>
+  {{ end }}
+</figure>

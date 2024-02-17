@@ -1,0 +1,53 @@
+<div class="max-w-sm mx-auto flex flex-col gap-4 items-center">
+  <h1>{{ .Site.Title }}</h1>
+  {{ $displayJpg := resources.Get "images/logo.jpg" }}
+  {{ $displayPng := resources.Get "images/logo.png" }}
+
+  {{ if $displayPng }}
+    {{ $displayPng = $displayPng | fingerprint }}
+    {{ $displayPng = $displayPng.Process "webp" }}
+    {{ if $displayPng.Permalink }}
+      <img src="{{ $displayPng.Permalink }}" class="w-8 h-8 rounded-full overflow-hidden">
+    {{ end }}
+  {{ else if $displayJpg }}
+    {{ $displayJpg = $displayJpg | fingerprint }}
+    {{ $displayJpg = $displayJpg.Process "webp" }}
+    {{ if $displayJpg.Permalink }}
+      <img src="{{ $displayJpg.Permalink }}" class="w-8 h-8 rounded-full overflow-hidden">
+    {{ end }}
+  {{ else }}
+    <div class="w-36 h-36 bg-brand-accent rounded-full"></div>
+  {{ end }}
+  
+  <!-- self description -->
+  <div class="grid divide-x-2 divide-brand-secondary sm:grid-cols-2 grid-cols-1 text-brand-secondary max-sm:space-y-2">
+    <div class="text-right p-2">
+      <p>Software Engineer</p>
+      <p>Tokyo, Japan</p>
+    </div>
+    <p class="opacity-55 p-2">Blogs of a software engineer living in Tokyo, Japan.</p>
+  </div>
+
+  <!-- socials -->
+  <div class="flex gap-4 justify-center text-brand-secondary">
+    {{ range sort site.Params.social "weight" }}
+    <a href="{{ .url }}" class="hover:text-brand-accent transition-all ease-in-out duration-200" target="_blank">
+      {{ if (eq .name "Twitter") }}
+      <tooltip-component data-tip="{{ .name }}">
+        {{ partial "icons/twitter.html" (dict "context" . "class" "w-6 h-6") }}
+      </tooltip-component>
+      {{ else if (eq .name "Github") }}
+      <tooltip-component data-tip="{{ .name }}">
+        {{ partial "icons/github.html" (dict "context" . "class" "w-6 h-6") }}
+      </tooltip-component>
+      {{ else if (eq .name "Bluesky") }}
+      <tooltip-component data-tip="{{ .name }}">
+        {{ partial "icons/bluesky.html" (dict "context" . "class" "w-6 h-6") }}
+      </tooltip-component>
+      {{ else }}
+      {{ .name }}
+      {{ end }}
+    </a>
+    {{ end }}
+  </div>
+</div>
